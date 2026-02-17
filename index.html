@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finflow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="./script.js" defer></script>
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- ===== HEADER ===== -->
+        <header>
+            <div class="logo">
+                <div class="logo-dot"></div>Finflow
+            </div>
+            <div class="header-right">
+
+                <!-- Language switcher -->
+                <div class="lang-switcher">
+                    <button class="lang-btn" data-lang="en">
+                        <span class="lang-flag">🇬🇧</span><span class="lang-name">EN</span>
+                    </button>
+                    <button class="lang-btn" data-lang="uk">
+                        <span class="lang-flag">🇺🇦</span><span class="lang-name">UK</span>
+                    </button>
+                    <button class="lang-btn active" data-lang="ru">
+                        <span class="lang-flag">🇷🇺</span><span class="lang-name">RU</span>
+                    </button>
+                </div>
+
+                <!-- Theme toggle -->
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <svg id="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" style="color:var(--text-muted)">
+                        <path id="ti-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <div class="toggle-track">
+                        <div class="toggle-knob"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-income" onclick="openTxModal('income')" id="btn-add-income">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span data-i18n="addIncome">Доход</span>
+                </button>
+                <button class="btn btn-expense" onclick="openTxModal('expense')" id="btn-add-expense">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span data-i18n="addExpense">Расход</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="openManageCatsModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    <span data-i18n="categories">Категории</span>
+                </button>
+                <button class="btn btn-secondary btn-sm" onclick="exportCSV()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                        <polyline points="7 10 12 15 17 10" />
+                        <line x1="12" y1="15" x2="12" y2="3" />
+                    </svg>
+                    CSV
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== RATES TICKER ===== -->
+        <div class="rates-bar" id="rates-bar">
+            <div class="rates-bar-left">
+                <span class="rates-live-dot" id="rates-dot"></span>
+                <span class="rates-label" id="rates-status-label">—</span>
+            </div>
+            <div class="rates-ticker-wrap">
+                <div class="rates-ticker" id="rates-ticker">
+                    <span class="rates-loading" id="rates-loading" data-i18n="ratesLoading">Загрузка курсов…</span>
+                </div>
+            </div>
+            <button class="rates-refresh-btn" onclick="manualRefreshRates()" title="Обновить курсы"
+                id="rates-refresh-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13">
+                    <polyline points="23 4 23 10 17 10" />
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- ===== BALANCE CARDS ===== -->
+        <div class="balance-grid">
+            <div class="card balance-main">
+                <div class="card-label" data-i18n="totalBalance">Общий баланс</div>
+                <div class="card-value" id="total-balance">0</div>
+                <div class="card-sub" id="balance-sub"></div>
+            </div>
+            <div class="card">
+                <div class="card-label" data-i18n="income">Доходы</div>
+                <div class="card-value positive" id="total-income">0</div>
+                <div class="card-sub" id="income-count"></div>
+            </div>
+            <div class="card">
+                <div class="card-label" data-i18n="expenses">Расходы</div>
+                <div class="card-value negative" id="total-expense">0</div>
+                <div class="card-sub" id="expense-count"></div>
+            </div>
+        </div>
+
+        <!-- ===== FILTERS ===== -->
+        <div class="filter-section">
+            <div class="filter-row">
+                <span class="filter-row-label" data-i18n="period">Период</span>
+                <button class="chip period-chip active" onclick="setPeriodFilter('all',this)"
+                    data-i18n="all">Все</button>
+                <button class="chip period-chip" onclick="setPeriodFilter('day',this)" data-i18n="day">День</button>
+                <button class="chip period-chip" onclick="setPeriodFilter('week',this)" data-i18n="week">Неделя</button>
+                <button class="chip period-chip" onclick="setPeriodFilter('month',this)"
+                    data-i18n="month">Месяц</button>
+            </div>
+            <div class="filter-row">
+                <span class="filter-row-label" data-i18n="type">Тип</span>
+                <button class="chip type-chip active" onclick="setTypeFilter('all',this)" data-i18n="all">Все</button>
+                <button class="chip type-chip t-income" onclick="setTypeFilter('income',this)"
+                    data-i18n="income">Доходы</button>
+                <button class="chip type-chip t-expense" onclick="setTypeFilter('expense',this)"
+                    data-i18n="expenses">Расходы</button>
+            </div>
+            <div class="filter-row">
+                <span class="filter-row-label" data-i18n="catShort">Катег.</span>
+                <div class="cat-chips-wrap" id="cat-filter-chips"></div>
+            </div>
+        </div>
+
+        <!-- ===== MAIN GRID ===== -->
+        <div class="main-grid">
+            <div>
+                <div class="section-header">
+                    <span class="section-title" data-i18n="transactions">Транзакции</span>
+                    <span class="section-count" id="tx-count-badge">0</span>
+                </div>
+                <div class="tx-list" id="tx-list"></div>
+            </div>
+
+            <div class="sidebar">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <span class="chart-title" data-i18n="expensesByCategory">Расходы по категориям</span>
+                        <select class="currency-select" id="pie-currency" onchange="onChartCurrencyChange()"></select>
+                    </div>
+                    <canvas id="pie-chart"></canvas>
+                    <p id="pie-empty"
+                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:18px 0"
+                        data-i18n="noExpenses">Нет расходов</p>
+                    <p class="rate-note" id="pie-rate-note"></p>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <span class="chart-title" data-i18n="balanceDynamics">Динамика баланса</span>
+                        <select class="currency-select" id="line-currency" onchange="onChartCurrencyChange()"></select>
+                    </div>
+                    <canvas id="line-chart"></canvas>
+                    <p id="line-empty"
+                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:18px 0"
+                        data-i18n="noData">Нет данных</p>
+                    <p class="rate-note" id="line-rate-note"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: ADD TRANSACTION ===== -->
+    <div class="modal-overlay" id="tx-modal" onclick="overlayClick(event,'tx-modal')">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="tx-modal-title"></div>
+                <button class="modal-close" onclick="closeTxModal()"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <form id="tx-form" onsubmit="saveTransaction(event)">
+                <div class="form-group">
+                    <label class="form-label" data-i18n="amountAndCurrency">Сумма и валюта</label>
+                    <div class="amount-row">
+                        <input type="number" id="f-amount" class="form-input amount-input" placeholder="0.00" min="0.01"
+                            step="0.01" required>
+                        <select id="f-currency" class="currency-picker"></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="category">Категория</label>
+                    <select id="f-category" class="form-select" required></select>
+                    <div class="add-cat-row">
+                        <input type="text" id="f-new-cat-name" class="form-input"
+                            data-i18n-placeholder="newCategoryPlaceholder" placeholder="Новая категория…"
+                            maxlength="28">
+                        <select id="f-new-cat-icon-pick" class="form-select"
+                            style="width:auto;padding:7px 8px;font-size:.8rem"></select>
+                        <button type="button" class="btn btn-secondary btn-sm" onclick="addCatFromForm()"
+                            data-i18n="add">+ Добавить</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="date">Дата</label>
+                    <input type="date" id="f-date" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" data-i18n="comment">Комментарий</label>
+                    <textarea id="f-comment" class="form-textarea" data-i18n-placeholder="commentPlaceholder"
+                        placeholder="Необязательно…"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeTxModal()"
+                        data-i18n="cancel">Отмена</button>
+                    <button type="submit" class="btn btn-primary" data-i18n="save">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== MODAL: MANAGE CATEGORIES ===== -->
+    <div class="modal-overlay" id="manage-cats-modal" onclick="overlayClick(event,'manage-cats-modal')">
+        <div class="modal" style="max-width:480px">
+            <div class="modal-header">
+                <div class="modal-title neutral" data-i18n="categoriesTitle">Категории</div>
+                <button class="modal-close" onclick="closeManageCatsModal()"><svg viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.5">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+            <div class="cat-list" id="cat-list"></div>
+            <div class="add-cat-form">
+                <div style="font-size:.69rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)"
+                    data-i18n="addCategory">Добавить категорию</div>
+                <div class="add-cat-form-row">
+                    <input type="text" id="mc-name" class="form-input" data-i18n-placeholder="namePlaceholder"
+                        placeholder="Название" maxlength="28" style="flex:1">
+                    <select id="mc-icon" class="form-select" style="width:auto;padding:7px 8px"></select>
+                    <select id="mc-type" class="form-select" style="width:auto" id="mc-type">
+                        <option value="income" data-i18n="income">Доход</option>
+                        <option value="expense" data-i18n="expenses">Расход</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary btn-sm" onclick="addCatFromManager()"
+                    style="align-self:flex-start">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="12"
+                        height="12">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span data-i18n="add">Добавить</span>
+                </button>
+            </div>
+            <div class="form-actions" style="margin-top:14px">
+                <button type="button" class="btn btn-secondary" style="flex:1;justify-content:center"
+                    onclick="closeManageCatsModal()" data-i18n="close">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
