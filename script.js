@@ -1,10 +1,10 @@
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            TRANSLATIONS
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 const TRANSLATIONS = {
   en: {
-    addIncome: "Income",
-    addExpense: "Expense",
+    addIncome: " Income",
+    addExpense: " Expense",
     categories: "Categories",
     categoriesTitle: "Categories",
     totalBalance: "Total Balance",
@@ -20,39 +20,50 @@ const TRANSLATIONS = {
     transactions: "Transactions",
     expensesByCategory: "Expenses by Category",
     balanceDynamics: "Balance Dynamics",
-    noExpenses: "No expenses",
+    noExpenses: "No expenses yet",
     noData: "No data",
     amountAndCurrency: "Amount & Currency",
+    amountHint: "Enter a positive number, e.g. 1500.00",
+    dateHint: "dd.mm.yyyy",
     category: "Category",
     date: "Date",
     comment: "Comment",
     newCategoryPlaceholder: "New category…",
     commentPlaceholder: "Optional…",
     namePlaceholder: "Name",
-    add: "+ Add",
+    addShort: "+ Add",
     addCategory: "Add Category",
     cancel: "Cancel",
     save: "Save",
     close: "Close",
-    noTransactions: "No transactions found",
+    incomeOpt: "Income",
+    expenseOpt: "Expense",
+    noTxTitle: "No transactions yet",
+    noTxHint: "Press '+ Income' or '− Expense' to get started.",
+    noTxBtn: "Add first transaction",
     modalIncomeTitle: "+ Add Income",
     modalExpenseTitle: "− Add Expense",
-    txCount: (n) => `${n} records`,
+    txCount: (n) => `${n} record${n === 1 ? "" : "s"}`,
     incomeCount: (n) => `${n} tx (₴)`,
     expenseCount: (n) => `${n} tx (₴)`,
-    balanceSub: (n) => `${n} transactions`,
+    balanceSub: (n) => `${n} transaction${n === 1 ? "" : "s"}`,
     noTxSub: "No transactions",
-    rateUpdated: "rate updated",
-    rateApprox: "approximate rate",
+    rateUpdated: "rate refreshed",
+    rateApprox: "approx. rate",
     originalCurrency: "Original",
     catIncomeLabel: "Income",
     catExpenseLabel: "Expense",
-    builtinCatTitle: "Built-in category",
+    builtinCatTitle: "Built-in (protected)",
     ratesLoading: "Loading rates…",
     ratesLive: "LIVE",
     ratesError: "Offline",
     ratesCached: "Cached",
-    // default category names
+    csvTooltip: "Export current filter as CSV",
+    heroBadge: "Personal Finance",
+    heroTitle: "Finflow — your <span>finance tracker</span>",
+    heroSub:
+      "Track income, expenses and balance in seconds. No sign-up needed — everything is stored in your browser.",
+    heroHint: "Data is saved automatically in your browser's localStorage",
     salary: "Salary",
     gifts: "Gifts",
     incomeOther: "Other (income)",
@@ -60,11 +71,12 @@ const TRANSLATIONS = {
     transport: "Transport",
     entertainment: "Entertainment",
     housing: "Housing",
-    expenseOther: "Other (expense)",
+    expenseOther: "Other (expenses)",
+    noDataAlert: "No data to export.",
   },
   uk: {
-    addIncome: "Дохід",
-    addExpense: "Витрата",
+    addIncome: " Дохід",
+    addExpense: " Витрата",
     categories: "Категорії",
     categoriesTitle: "Категорії",
     totalBalance: "Загальний баланс",
@@ -80,23 +92,29 @@ const TRANSLATIONS = {
     transactions: "Транзакції",
     expensesByCategory: "Витрати за категоріями",
     balanceDynamics: "Динаміка балансу",
-    noExpenses: "Немає витрат",
+    noExpenses: "Витрат ще немає",
     noData: "Немає даних",
     amountAndCurrency: "Сума та валюта",
+    amountHint: "Введіть додатне число, наприклад 1500.00",
+    dateHint: "дд.мм.рррр",
     category: "Категорія",
     date: "Дата",
     comment: "Коментар",
-    newCategoryPlaceholder: "Нова категорія…",
-    commentPlaceholder: "Необов’язково…",
+    newCategoryPlaceholder: "Нова категорія\u2026",
+    commentPlaceholder: "Необов\u2019язково\u2026",
     namePlaceholder: "Назва",
-    add: "+ Додати",
+    addShort: "+ Додати",
     addCategory: "Додати категорію",
     cancel: "Скасувати",
     save: "Зберегти",
     close: "Закрити",
-    noTransactions: "Транзакцій не знайдено",
+    incomeOpt: "Дохід",
+    expenseOpt: "Витрата",
+    noTxTitle: "Транзакцій ще немає",
+    noTxHint: "Натисніть '+ Дохід' або '− Витрата', щоб почати.",
+    noTxBtn: "Додати першу транзакцію",
     modalIncomeTitle: "+ Додати дохід",
-    modalExpenseTitle: "− Додати витрату",
+    modalExpenseTitle: "\u2212 Додати витрату",
     txCount: (n) => `${n} записів`,
     incomeCount: (n) => `${n} тр. (₴)`,
     expenseCount: (n) => `${n} тр. (₴)`,
@@ -107,11 +125,17 @@ const TRANSLATIONS = {
     originalCurrency: "Оригінал",
     catIncomeLabel: "Дохід",
     catExpenseLabel: "Витрата",
-    builtinCatTitle: "Вбудована категорія",
-    ratesLoading: "Завантаження…",
+    builtinCatTitle: "Вбудована (захищена)",
+    ratesLoading: "Завантаження\u2026",
     ratesLive: "LIVE",
     ratesError: "Офлайн",
     ratesCached: "Кеш",
+    csvTooltip: "Експортувати поточну вибірку як CSV",
+    heroBadge: "Особисті фінанси",
+    heroTitle: "Finflow \u2014 ваш <span>трекер фінансів</span>",
+    heroSub:
+      "Відстежуйте доходи, витрати та баланс за секунди. Без реєстрації \u2014 все зберігається у вашому браузері.",
+    heroHint: "Дані зберігаються автоматично в localStorage вашого браузера",
     salary: "Зарплата",
     gifts: "Подарунки",
     incomeOther: "Інше (доходи)",
@@ -120,10 +144,11 @@ const TRANSLATIONS = {
     entertainment: "Розваги",
     housing: "Житло",
     expenseOther: "Інше (витрати)",
+    noDataAlert: "Немає даних для експорту.",
   },
   ru: {
-    addIncome: "Доход",
-    addExpense: "Расход",
+    addIncome: " Доход",
+    addExpense: " Расход",
     categories: "Категории",
     categoriesTitle: "Категории",
     totalBalance: "Общий баланс",
@@ -139,21 +164,27 @@ const TRANSLATIONS = {
     transactions: "Транзакции",
     expensesByCategory: "Расходы по категориям",
     balanceDynamics: "Динамика баланса",
-    noExpenses: "Нет расходов",
+    noExpenses: "Расходов ещё нет",
     noData: "Нет данных",
     amountAndCurrency: "Сумма и валюта",
+    amountHint: "Введите положительное число, например 1500.00",
+    dateHint: "дд.мм.гггг",
     category: "Категория",
     date: "Дата",
     comment: "Комментарий",
     newCategoryPlaceholder: "Новая категория…",
     commentPlaceholder: "Необязательно…",
     namePlaceholder: "Название",
-    add: "+ Добавить",
+    addShort: "+ Добавить",
     addCategory: "Добавить категорию",
     cancel: "Отмена",
     save: "Сохранить",
     close: "Закрыть",
-    noTransactions: "Транзакций не найдено",
+    incomeOpt: "Доход",
+    expenseOpt: "Расход",
+    noTxTitle: "Транзакций пока нет",
+    noTxHint: "Нажмите «+ Доход» или «− Расход», чтобы начать.",
+    noTxBtn: "Добавить первую транзакцию",
     modalIncomeTitle: "+ Добавить доход",
     modalExpenseTitle: "− Добавить расход",
     txCount: (n) => `${n} записей`,
@@ -166,11 +197,17 @@ const TRANSLATIONS = {
     originalCurrency: "Оригинал",
     catIncomeLabel: "Доход",
     catExpenseLabel: "Расход",
-    builtinCatTitle: "Встроенная категория",
+    builtinCatTitle: "Встроенная (защищена)",
     ratesLoading: "Загрузка курсов…",
     ratesLive: "LIVE",
     ratesError: "Офлайн",
     ratesCached: "Кэш",
+    csvTooltip: "Экспорт текущей выборки в CSV",
+    heroBadge: "Личные финансы",
+    heroTitle: "Finflow — ваш <span>трекер финансов</span>",
+    heroSub:
+      "Отслеживайте доходы, расходы и баланс за секунды. Никакой регистрации — всё хранится в вашем браузере.",
+    heroHint: "Данные сохраняются автоматически в localStorage вашего браузера",
     salary: "Зарплата",
     gifts: "Подарки",
     incomeOther: "Прочее (доходы)",
@@ -179,59 +216,44 @@ const TRANSLATIONS = {
     entertainment: "Развлечения",
     housing: "Жильё",
     expenseOther: "Прочее (расходы)",
+    noDataAlert: "Нет данных для экспорта.",
   },
 };
 
-// Keys for the built-in category names (so they translate dynamically)
-const BUILTIN_CAT_I18N = {
-  salary: "salary",
-  gifts: "gifts",
-  income_other: "incomeOther",
-  food: "food",
-  transport: "transport",
-  entertainment: "entertainment",
-  housing: "housing",
-  expense_other: "expenseOther",
-};
-
 function t(key) {
-  const dict = TRANSLATIONS[state?.lang || "ru"];
-  return dict[key] || key;
+  return TRANSLATIONS[state?.lang || "ru"][key] ?? key;
 }
 
 function applyI18n() {
   const lang = state.lang;
   document.documentElement.lang = lang;
-  document.title = "Finflow";
-
-  // data-i18n text content
   document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.getAttribute("data-i18n");
-    const val = TRANSLATIONS[lang][key];
-    if (typeof val === "string") el.textContent = val;
+    const v = TRANSLATIONS[lang][el.dataset.i18n];
+    if (typeof v === "string") el.textContent = v;
   });
-
-  // data-i18n-placeholder
+  document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+    const v = TRANSLATIONS[lang][el.dataset.i18nHtml];
+    if (typeof v === "string") el.innerHTML = v;
+  });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-    const key = el.getAttribute("data-i18n-placeholder");
-    const val = TRANSLATIONS[lang][key];
-    if (val) el.placeholder = val;
+    const v = TRANSLATIONS[lang][el.dataset.i18nPlaceholder];
+    if (v) el.placeholder = v;
   });
-
   // mc-type options
-  const mcType = document.getElementById("mc-type");
-  if (mcType) {
-    mcType.options[0].text = t("income");
-    mcType.options[1].text = t("expenses");
+  const mct = document.getElementById("mc-type");
+  if (mct) {
+    mct.options[0].text = t("incomeOpt");
+    mct.options[1].text = t("expenseOpt");
   }
-
-  // Update currency dropdowns labels
+  // CSV button tooltip
+  const csvBtn = document.getElementById("btn-csv");
+  if (csvBtn) csvBtn.title = t("csvTooltip");
   populateCurrencyDropdowns();
 }
 
-/* ============================================================
-           SVG ICON LIBRARY
-           ============================================================ */
+/* ══════════════════════════════════════════════════════════
+           ICONS
+        ══════════════════════════════════════════════════════════ */
 const ICONS = {
   briefcase: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>`,
   gift: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>`,
@@ -252,9 +274,16 @@ const ICONS = {
 };
 const ICON_KEYS = Object.keys(ICONS);
 
-/* ============================================================
-           CURRENCIES
-           ============================================================ */
+function iconSvg(key, color) {
+  return (ICONS[key] || ICONS.tag).replace(
+    "<svg ",
+    `<svg style="color:${color}" `
+  );
+}
+
+/* ══════════════════════════════════════════════════════════
+           CURRENCIES & EXCHANGE RATES
+        ══════════════════════════════════════════════════════════ */
 const CURRENCIES = [
   { code: "UAH", symbol: "₴" },
   { code: "USD", symbol: "$" },
@@ -265,7 +294,7 @@ const CURRENCIES = [
   { code: "CZK", symbol: "Kč" },
   { code: "JPY", symbol: "¥" },
 ];
-let exchangeRates = {
+const FALLBACK_RATES = {
   UAH: 1,
   USD: 0.024,
   EUR: 0.022,
@@ -275,16 +304,137 @@ let exchangeRates = {
   CZK: 0.56,
   JPY: 3.65,
 };
+const TICKER_CURRENCIES = ["USD", "EUR", "GBP", "PLN", "CHF", "CZK", "JPY"];
+const RATES_CACHE_KEY = "ff5_rates";
+const RATES_TTL = 60000;
+let exchangeRates = { ...FALLBACK_RATES };
 let ratesLoaded = false;
+let prevRates = {};
+let ratesTimer = null;
 
-/* ============================================================
-           STATE & STORAGE
-           ============================================================ */
+function loadCachedRates() {
+  try {
+    const d = JSON.parse(localStorage.getItem(RATES_CACHE_KEY));
+    return d ? { rates: d.rates, fresh: Date.now() - d.ts < RATES_TTL } : null;
+  } catch {
+    return null;
+  }
+}
+function saveCachedRates(rates) {
+  localStorage.setItem(
+    RATES_CACHE_KEY,
+    JSON.stringify({ rates, ts: Date.now() })
+  );
+}
+function applyRates(rates, fromCache) {
+  prevRates = { ...exchangeRates };
+  exchangeRates = { UAH: 1, ...rates };
+  ratesLoaded = true;
+  renderRatesTicker(fromCache);
+  renderCharts(getFilteredTransactions());
+}
+async function fetchExchangeRates() {
+  setRatesStatus("loading");
+  try {
+    const res = await fetch("https://open.er-api.com/v6/latest/UAH");
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    if (!data.rates) throw new Error();
+    const rates = {};
+    CURRENCIES.forEach((c) => {
+      if (data.rates[c.code]) rates[c.code] = data.rates[c.code];
+    });
+    saveCachedRates(rates);
+    applyRates(rates, false);
+  } catch {
+    const cached = loadCachedRates();
+    cached
+      ? applyRates(cached.rates, true)
+      : (applyRates(FALLBACK_RATES, true), setRatesStatus("error"));
+  }
+}
+function startRatesTimer() {
+  if (ratesTimer) clearInterval(ratesTimer);
+  ratesTimer = setInterval(() => {
+    if (!document.hidden) fetchExchangeRates();
+  }, RATES_TTL);
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (!document.hidden) {
+        const c = loadCachedRates();
+        if (!c || !c.fresh) fetchExchangeRates();
+      }
+    },
+    { passive: true }
+  );
+}
+function manualRefreshRates() {
+  const btn = document.getElementById("rates-refresh-btn");
+  btn.classList.add("spinning");
+  setTimeout(() => btn.classList.remove("spinning"), 700);
+  fetchExchangeRates();
+}
+function setRatesStatus(status) {
+  const dot = document.getElementById("rates-dot");
+  const lbl = document.getElementById("rates-status-label");
+  dot.className = "rates-live-dot";
+  if (status === "loading") {
+    dot.classList.add("loading");
+    lbl.textContent = t("ratesLoading");
+  } else if (status === "error") {
+    dot.classList.add("error");
+    lbl.textContent = t("ratesError");
+  }
+}
+function renderRatesTicker(fromCache) {
+  const ticker = document.getElementById("rates-ticker");
+  const dot = document.getElementById("rates-dot");
+  const lbl = document.getElementById("rates-status-label");
+  dot.className = "rates-live-dot " + (fromCache ? "" : "live");
+  lbl.textContent = fromCache ? t("ratesCached") : t("ratesLive");
+  const hhmm = new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  const chips = TICKER_CURRENCIES.map((code) => {
+    if (!exchangeRates[code]) return "";
+    const val = 1 / exchangeRates[code],
+      prev = prevRates[code] ? 1 / prevRates[code] : val;
+    const diff = val - prev;
+    const cls = diff > 0.0001 ? "up" : diff < -0.0001 ? "down" : "flat";
+    const arrow = cls === "up" ? "▲" : cls === "down" ? "▼" : "—";
+    const fmt =
+      val >= 100 ? val.toFixed(0) : val >= 10 ? val.toFixed(2) : val.toFixed(3);
+    return `<div class="rate-chip" title="1 ${getCurrencySymbol(
+      code
+    )} = ${fmt} ₴">
+      <span class="rate-code">${code}</span>
+      <span class="rate-val">₴${fmt}</span>
+      <span class="rate-change ${cls}">${arrow}</span></div>`;
+  })
+    .filter(Boolean)
+    .join("");
+  ticker.innerHTML = chips + `<span class="rate-time">${hhmm}</span>`;
+}
+function refreshRatesLabels() {
+  const dot = document.getElementById("rates-dot");
+  if (!dot) return;
+  const lbl = document.getElementById("rates-status-label");
+  if (ratesLoaded)
+    lbl.textContent = dot.classList.contains("live")
+      ? t("ratesLive")
+      : t("ratesCached");
+}
+
+/* ══════════════════════════════════════════════════════════
+           STORAGE & STATE
+        ══════════════════════════════════════════════════════════ */
 const KEYS = {
-  TX: "ff4_txs",
-  CATS: "ff4_cats",
-  THEME: "ff4_theme",
-  LANG: "ff4_lang",
+  TX: "ff5_txs",
+  CATS: "ff5_cats",
+  THEME: "ff5_theme",
+  LANG: "ff5_lang",
 };
 
 const DEFAULT_CATEGORIES = [
@@ -346,6 +496,32 @@ const DEFAULT_CATEGORIES = [
   },
 ];
 
+/* Demo transactions shown on first visit */
+function getDemoTransactions() {
+  const today = new Date();
+  const d = (offset, cat, type, amount, cur, comment) => {
+    const dt = new Date(today);
+    dt.setDate(dt.getDate() - offset);
+    return {
+      id: "demo_" + offset + "_" + cat,
+      type,
+      amount,
+      currency: cur || "UAH",
+      categoryId: cat,
+      date: dt.toISOString().split("T")[0],
+      comment: comment || "",
+      isDemo: true,
+    };
+  };
+  return [
+    d(0, "food", "expense", 480, "UAH", ""),
+    d(1, "transport", "expense", 95, "UAH", ""),
+    d(2, "entertainment", "expense", 750, "UAH", ""),
+    d(4, "salary", "income", 35000, "UAH", ""),
+    d(6, "gifts", "income", 2500, "UAH", ""),
+  ];
+}
+
 const CHART_COLORS = [
   "#ff6b6b",
   "#ffa94d",
@@ -366,24 +542,21 @@ let state = {
   theme: "dark",
   lang: "ru",
   currentTxType: "income",
+  hasRealData: false,
 };
 let charts = { pie: null, line: null };
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            HELPERS
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
-
 function getCatById(id) {
   const c = state.categories.find((c) => c.id === id);
   if (!c) return { name: id, iconKey: "tag", type: "expense" };
-  // For built-in cats, name comes from i18n
-  const name = c.custom ? c.name : t(c.i18nKey);
-  return { ...c, name };
+  return { ...c, name: c.custom ? c.name : t(c.i18nKey) };
 }
-
 function getCatsByType(type) {
   return state.categories.filter((c) => c.type === type);
 }
@@ -393,13 +566,10 @@ function catColor(i) {
 function getCurrencySymbol(code) {
   return (CURRENCIES.find((c) => c.code === code) || { symbol: code }).symbol;
 }
-
 function convertAmount(amount, from, to) {
   if (from === to) return amount;
-  const uah = amount / (exchangeRates[from] || 1);
-  return uah * (exchangeRates[to] || 1);
+  return (amount / (exchangeRates[from] || 1)) * (exchangeRates[to] || 1);
 }
-
 function fmtNum(n, code) {
   const sym = getCurrencySymbol(code || "UAH");
   const abs = Math.abs(n);
@@ -414,7 +584,6 @@ function fmtNum(n, code) {
         });
   return (n < 0 ? "−" : "") + sym + str;
 }
-
 function fmtDate(ds) {
   const localeMap = { en: "en-GB", uk: "uk-UA", ru: "ru-RU" };
   return new Date(ds + "T12:00").toLocaleDateString(
@@ -422,7 +591,6 @@ function fmtDate(ds) {
     { day: "numeric", month: "short" }
   );
 }
-
 function saveTx() {
   localStorage.setItem(KEYS.TX, JSON.stringify(state.transactions));
 }
@@ -430,9 +598,9 @@ function saveCats() {
   localStorage.setItem(KEYS.CATS, JSON.stringify(state.categories));
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            INIT
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function init() {
   state.transactions = JSON.parse(localStorage.getItem(KEYS.TX) || "[]");
   const sc = localStorage.getItem(KEYS.CATS);
@@ -441,8 +609,8 @@ function init() {
     : DEFAULT_CATEGORIES.map((c) => ({ ...c }));
   state.theme = localStorage.getItem(KEYS.THEME) || "dark";
   state.lang = localStorage.getItem(KEYS.LANG) || "ru";
+  state.hasRealData = state.transactions.length > 0;
 
-  // Wire lang buttons after JS is parsed — avoids "not defined" on inline onclick
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.addEventListener("click", () => setLang(btn.dataset.lang));
   });
@@ -452,22 +620,18 @@ function init() {
   populateCurrencyDropdowns();
   populateIconSelects();
 
-  // Load cached rates immediately, then fetch fresh in background
   const cached = loadCachedRates();
-  if (cached) {
-    applyRates(cached.rates, true);
-  } else {
-    setRatesStatus("loading");
-  }
+  if (cached) applyRates(cached.rates, true);
+  else setRatesStatus("loading");
   fetchExchangeRates();
   startRatesTimer();
 
   render();
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            LANGUAGE
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function setLang(lang) {
   state.lang = lang;
   localStorage.setItem(KEYS.LANG, lang);
@@ -475,235 +639,54 @@ function setLang(lang) {
   refreshRatesLabels();
   render();
 }
-
 function applyLangUI(lang) {
-  // update active button
-  document.querySelectorAll(".lang-btn").forEach((b) => {
-    b.classList.toggle("active", b.dataset.lang === lang);
-  });
+  document
+    .querySelectorAll(".lang-btn")
+    .forEach((b) => b.classList.toggle("active", b.dataset.lang === lang));
   state.lang = lang;
   applyI18n();
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            THEME
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function toggleTheme() {
   state.theme = state.theme === "dark" ? "light" : "dark";
   localStorage.setItem(KEYS.THEME, state.theme);
   applyTheme(state.theme);
   renderCharts(getFilteredTransactions());
 }
-function applyTheme(t) {
-  document.documentElement.setAttribute("data-theme", t);
-  const path = document.getElementById("ti-path");
-  path.setAttribute(
+function applyTheme(th) {
+  document.documentElement.setAttribute("data-theme", th);
+  const p = document.getElementById("ti-path");
+  p.setAttribute(
     "d",
-    t === "dark"
+    th === "dark"
       ? "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
       : "M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 5a7 7 0 1 0 0 14A7 7 0 0 0 12 5z"
   );
 }
 
-/* ============================================================
-           EXCHANGE RATES — live tracking
-           ============================================================ */
-const RATES_CACHE_KEY = "ff4_rates_cache";
-const RATES_TTL = 60 * 1000; // refresh every 60 s when tab is visible
-const RATES_INTERVAL = 60 * 1000;
-let ratesTimer = null;
-let prevRates = {}; // for change arrows
-let ratesLastUpdated = null;
-
-// Fallback rates relative to UAH
-const FALLBACK_RATES = {
-  UAH: 1,
-  USD: 0.024,
-  EUR: 0.022,
-  GBP: 0.019,
-  PLN: 0.098,
-  CHF: 0.021,
-  CZK: 0.56,
-  JPY: 3.65,
-};
-
-// Display currencies in the ticker (skip UAH — it's the base)
-const TICKER_CURRENCIES = ["USD", "EUR", "GBP", "PLN", "CHF", "CZK", "JPY"];
-
-/* ---- rate store ---- */
-function loadCachedRates() {
-  try {
-    const raw = localStorage.getItem(RATES_CACHE_KEY);
-    if (!raw) return null;
-    const { rates, ts } = JSON.parse(raw);
-    return { rates, ts, fresh: Date.now() - ts < RATES_TTL };
-  } catch (e) {
-    return null;
-  }
-}
-function saveCachedRates(rates) {
-  const ts = Date.now();
-  localStorage.setItem(RATES_CACHE_KEY, JSON.stringify({ rates, ts }));
-  ratesLastUpdated = ts;
-}
-function applyRates(rates, fromCache) {
-  prevRates = { ...exchangeRates };
-  exchangeRates = { UAH: 1, ...rates };
-  ratesLoaded = true;
-  renderRatesTicker(fromCache);
-  renderCharts(getFilteredTransactions());
-}
-
-/* ---- fetch ---- */
-async function fetchExchangeRates(isManual = false) {
-  setRatesStatus("loading");
-  try {
-    // Try primary source
-    const res = await fetch("https://open.er-api.com/v6/latest/UAH");
-    if (!res.ok) throw new Error("HTTP " + res.status);
-    const data = await res.json();
-    if (!data.rates) throw new Error("No rates");
-    const rates = {};
-    CURRENCIES.forEach((c) => {
-      if (data.rates[c.code]) rates[c.code] = data.rates[c.code];
-    });
-    saveCachedRates(rates);
-    applyRates(rates, false);
-  } catch (e) {
-    // Try cache
-    const cached = loadCachedRates();
-    if (cached) {
-      applyRates(cached.rates, true);
-    } else {
-      // Use hardcoded fallback
-      applyRates(FALLBACK_RATES, true);
-      setRatesStatus("error");
-    }
-  }
-}
-
-/* ---- auto-refresh loop ---- */
-function startRatesTimer() {
-  if (ratesTimer) clearInterval(ratesTimer);
-  ratesTimer = setInterval(() => {
-    if (!document.hidden) fetchExchangeRates();
-  }, RATES_INTERVAL);
-  // Also refresh when tab becomes visible after being hidden
-  document.addEventListener(
-    "visibilitychange",
-    () => {
-      if (!document.hidden) {
-        const cached = loadCachedRates();
-        if (!cached || !cached.fresh) fetchExchangeRates();
-      }
-    },
-    { passive: true }
-  );
-}
-
-function manualRefreshRates() {
-  const btn = document.getElementById("rates-refresh-btn");
-  btn.classList.add("spinning");
-  setTimeout(() => btn.classList.remove("spinning"), 700);
-  fetchExchangeRates(true);
-}
-
-/* ---- UI ---- */
-function setRatesStatus(status) {
-  const dot = document.getElementById("rates-dot");
-  const label = document.getElementById("rates-status-label");
-  dot.className = "rates-live-dot";
-  if (status === "loading") {
-    dot.classList.add("loading");
-    label.textContent = t("ratesLoading");
-  } else if (status === "error") {
-    dot.classList.add("error");
-    label.textContent = t("ratesError");
-  }
-}
-
-function renderRatesTicker(fromCache) {
-  const ticker = document.getElementById("rates-ticker");
-  const dot = document.getElementById("rates-dot");
-  const label = document.getElementById("rates-status-label");
-
-  dot.className = "rates-live-dot " + (fromCache ? "" : "live");
-  label.textContent = fromCache ? t("ratesCached") : t("ratesLive");
-
-  // Time string
-  const now = new Date();
-  const hhmm = now.toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
-  // Build chips — show how many UAH per 1 foreign unit
-  const chips = TICKER_CURRENCIES.map((code) => {
-    if (!exchangeRates[code]) return "";
-    // 1 USD = ? UAH  →  1/rate_UAH_per_USD
-    const ratePerUnit = 1 / exchangeRates[code]; // UAH per 1 foreign unit
-    const prevRate = prevRates[code] ? 1 / prevRates[code] : ratePerUnit;
-    const diff = ratePerUnit - prevRate;
-    const changeClass = diff > 0.0001 ? "up" : diff < -0.0001 ? "down" : "flat";
-    const arrow =
-      changeClass === "up" ? "▲" : changeClass === "down" ? "▼" : "—";
-    const formatted =
-      ratePerUnit >= 100
-        ? ratePerUnit.toFixed(0)
-        : ratePerUnit >= 10
-        ? ratePerUnit.toFixed(2)
-        : ratePerUnit.toFixed(3);
-    const sym = getCurrencySymbol(code);
-    return `<div class="rate-chip" title="1 ${sym} = ${formatted} ₴">
-      <span class="rate-code">${code}</span>
-      <span class="rate-val">₴${formatted}</span>
-      <span class="rate-change ${changeClass}">${arrow}</span>
-    </div>`;
-  })
-    .filter(Boolean)
-    .join("");
-
-  ticker.innerHTML = chips + `<span class="rate-time">${hhmm}</span>`;
-}
-
-/* ---- update labels when language changes ---- */
-function refreshRatesLabels() {
-  const dot = document.getElementById("rates-dot");
-  if (!dot) return;
-  const label = document.getElementById("rates-status-label");
-  if (ratesLoaded) {
-    label.textContent = dot.classList.contains("live")
-      ? t("ratesLive")
-      : t("ratesCached");
-  }
-  const loadingEl = document.getElementById("rates-loading");
-  if (loadingEl) loadingEl.textContent = t("ratesLoading");
-}
-
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            CURRENCY UI
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function populateCurrencyDropdowns() {
-  const origLabel = t("originalCurrency");
+  const orig = t("originalCurrency");
   const opts = CURRENCIES.map(
     (c) => `<option value="${c.code}">${c.symbol} ${c.code}</option>`
   ).join("");
   ["pie-currency", "line-currency"].forEach((id) => {
-    const sel = document.getElementById(id);
-    const cur = sel.value;
-    sel.innerHTML = `<option value="original">${origLabel}</option>` + opts;
+    const sel = document.getElementById(id),
+      cur = sel.value;
+    sel.innerHTML = `<option value="original">${orig}</option>` + opts;
     sel.value = cur || "original";
   });
   document.getElementById("f-currency").innerHTML = opts;
 }
-
 function onChartCurrencyChange() {
   renderCharts(getFilteredTransactions());
 }
 
-/* ============================================================
-           ICON SELECTS
-           ============================================================ */
 function populateIconSelects() {
   const opts = ICON_KEYS.map((k) => `<option value="${k}">${k}</option>`).join(
     ""
@@ -712,16 +695,9 @@ function populateIconSelects() {
   document.getElementById("mc-icon").innerHTML = opts;
 }
 
-function iconSvg(key, color) {
-  return (ICONS[key] || ICONS.tag).replace(
-    "<svg ",
-    `<svg style="color:${color}" `
-  );
-}
-
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            FILTERS
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function setPeriodFilter(p, el) {
   state.filters.period = p;
   document
@@ -730,7 +706,6 @@ function setPeriodFilter(p, el) {
   el.classList.add("active");
   render();
 }
-
 function setTypeFilter(tp, el) {
   state.filters.type = tp;
   document
@@ -739,11 +714,9 @@ function setTypeFilter(tp, el) {
   el.classList.add("active");
   render();
 }
-
 function toggleCatFilter(catId) {
   const i = state.filters.cats.indexOf(catId);
-  if (i === -1) state.filters.cats.push(catId);
-  else state.filters.cats.splice(i, 1);
+  i === -1 ? state.filters.cats.push(catId) : state.filters.cats.splice(i, 1);
   render();
 }
 function clearCatFilter() {
@@ -752,6 +725,7 @@ function clearCatFilter() {
 }
 
 function getFilteredTransactions() {
+  // Only filter real transactions; demos shown separately
   const now = new Date();
   return state.transactions.filter((tx) => {
     const d = new Date(tx.date + "T12:00");
@@ -781,11 +755,15 @@ function getFilteredTransactions() {
   });
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            RENDER
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function render() {
   const f = getFilteredTransactions();
+  // Hero: show when no real data, hide otherwise
+  const hero = document.getElementById("hero-section");
+  hero.style.display = state.hasRealData ? "none" : "block";
+
   renderStats(f);
   renderCatChips();
   renderTransactions(f);
@@ -843,51 +821,83 @@ function renderTransactions(filtered) {
   document.getElementById("tx-count-badge").textContent = t("txCount")(
     filtered.length
   );
-  if (!filtered.length) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">${
-      ICONS.tag
-    }</div>${t("noTransactions")}</div>`;
+
+  // No real data → show demo transactions + styled empty state
+  if (!state.hasRealData) {
+    const demos = getDemoTransactions();
+    const demoHtml = demos.map((tx) => txItemHtml(tx, true)).join("");
+    list.innerHTML = `
+      <div class="empty-state" style="padding-bottom:16px">
+        <div class="empty-icon">${ICONS.tag}</div>
+        <div class="empty-title">${t("noTxTitle")}</div>
+        <div class="empty-hint">${t("noTxHint")}</div>
+        <button class="empty-cta" onclick="openTxModal('income')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          ${t("noTxBtn")}
+        </button>
+      </div>
+      <div style="font-size:.68rem;color:var(--text-muted);text-align:center;margin:8px 0 6px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;opacity:.7">— Preview —</div>
+      ${demoHtml}`;
     return;
   }
-  list.innerHTML = filtered
-    .map((tx) => {
-      const cat = getCatById(tx.categoryId);
-      const isInc = tx.type === "income";
-      const bg = isInc ? "var(--green-bg)" : "var(--red-bg)";
-      const clr = isInc ? "var(--green)" : "var(--red)";
-      const cur = tx.currency || "UAH";
-      const sym = getCurrencySymbol(cur);
-      const sign = isInc ? "+" : "−";
-      return `<div class="tx-item" data-id="${tx.id}">
-      <div class="tx-icon" style="background:${bg}">${iconSvg(
-        cat.iconKey || "tag",
-        clr
-      )}</div>
-      <div class="tx-info">
-        <div class="tx-category">${cat.name}</div>
-        <div class="tx-meta">
-          <span>${fmtDate(tx.date)}</span>
-          <span class="tx-currency-badge">${cur}</span>
-          ${tx.comment ? `<span>· ${tx.comment}</span>` : ""}
-        </div>
-      </div>
-      <div class="tx-amount ${isInc ? "inc" : "exp"}">${sign}${sym}${Number(
-        tx.amount
-      ).toLocaleString("uk-UA", {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2,
-      })}</div>
-      <button class="tx-delete" onclick="deleteTx('${
-        tx.id
-      }')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+
+  if (!filtered.length) {
+    list.innerHTML = `<div class="empty-state">
+      <div class="empty-icon">${ICONS.tag}</div>
+      <div class="empty-title">${t("noTxTitle")}</div>
+      <div class="empty-hint">${t("noTxHint")}</div>
+      <button class="empty-cta" onclick="openTxModal('income')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        ${t("noTxBtn")}
+      </button>
     </div>`;
-    })
-    .join("");
+    return;
+  }
+  list.innerHTML = filtered.map((tx) => txItemHtml(tx, false)).join("");
 }
 
-/* ============================================================
+function txItemHtml(tx, isDemo) {
+  const cat = getCatById(tx.categoryId);
+  const isInc = tx.type === "income";
+  const bg = isInc ? "var(--green-bg)" : "var(--red-bg)";
+  const clr = isInc ? "var(--green)" : "var(--red)";
+  const cur = tx.currency || "UAH";
+  const sym = getCurrencySymbol(cur);
+  const sign = isInc ? "+" : "−";
+  const demoClass = isDemo ? " is-demo" : "";
+  const deleteBtn = isDemo
+    ? ""
+    : `<button class="tx-delete" onclick="deleteTx('${tx.id}')" title="Delete">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+       </button>`;
+  return `<div class="tx-item${demoClass}" ${
+    !isDemo ? `data-id="${tx.id}"` : ""
+  }">
+    <div class="tx-icon" style="background:${bg}">${iconSvg(
+    cat.iconKey || "tag",
+    clr
+  )}</div>
+    <div class="tx-info">
+      <div class="tx-category">${cat.name}</div>
+      <div class="tx-meta">
+        <span>${fmtDate(tx.date)}</span>
+        <span class="tx-currency-badge">${cur}</span>
+        ${tx.comment ? `<span>· ${tx.comment}</span>` : ""}
+      </div>
+    </div>
+    <div class="tx-amount ${isInc ? "inc" : "exp"}">${sign}${sym}${Number(
+    tx.amount
+  ).toLocaleString("uk-UA", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  })}</div>
+    ${deleteBtn}
+  </div>`;
+}
+
+/* ══════════════════════════════════════════════════════════
            TRANSACTIONS CRUD
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function saveTransaction(e) {
   e.preventDefault();
   const tx = {
@@ -900,6 +910,7 @@ function saveTransaction(e) {
     comment: document.getElementById("f-comment").value.trim(),
   };
   state.transactions.unshift(tx);
+  state.hasRealData = true;
   saveTx();
   closeTxModal();
   render();
@@ -911,21 +922,20 @@ function deleteTx(id) {
     el.classList.add("removing");
     setTimeout(() => {
       state.transactions = state.transactions.filter((tx) => tx.id !== id);
+      state.hasRealData = state.transactions.length > 0;
       saveTx();
       render();
-    }, 260);
+    }, 240);
   }
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            TX MODAL
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function openTxModal(type) {
   state.currentTxType = type;
-  const isInc = type === "income";
-  document.getElementById("tx-modal-title").textContent = isInc
-    ? t("modalIncomeTitle")
-    : t("modalExpenseTitle");
+  document.getElementById("tx-modal-title").textContent =
+    type === "income" ? t("modalIncomeTitle") : t("modalExpenseTitle");
   document.getElementById("tx-modal-title").className = "modal-title " + type;
   const amtEl = document.getElementById("f-amount");
   amtEl.className = `form-input amount-input ${type}`;
@@ -938,7 +948,7 @@ function openTxModal(type) {
   document.getElementById("f-comment").value = "";
   document.getElementById("f-new-cat-name").value = "";
   document.getElementById("tx-modal").classList.add("open");
-  setTimeout(() => amtEl.focus(), 180);
+  setTimeout(() => amtEl.focus(), 200);
 }
 function closeTxModal() {
   document.getElementById("tx-modal").classList.remove("open");
@@ -972,9 +982,9 @@ function addCatFromForm() {
   renderCatChips();
 }
 
-/* ============================================================
-           MANAGE CATEGORIES MODAL
-           ============================================================ */
+/* ══════════════════════════════════════════════════════════
+           MANAGE CATEGORIES
+        ══════════════════════════════════════════════════════════ */
 function openManageCatsModal() {
   renderCatManager();
   document.getElementById("manage-cats-modal").classList.add("open");
@@ -997,7 +1007,7 @@ function renderCatManager() {
       const catName = cat.custom ? cat.name : t(cat.i18nKey);
       const clr = cat.type === "income" ? "var(--green)" : "var(--red)";
       const bg = cat.type === "income" ? "var(--green-bg)" : "var(--red-bg)";
-      const typeLabel =
+      const lbl =
         cat.type === "income" ? t("catIncomeLabel") : t("catExpenseLabel");
       return `<div class="cat-row">
       <div class="cat-icon-box" style="background:${bg}">${iconSvg(
@@ -1005,7 +1015,7 @@ function renderCatManager() {
         clr
       )}</div>
       <span class="cat-row-name">${catName}</span>
-      <span class="cat-row-type ${cat.type}">${typeLabel}</span>
+      <span class="cat-row-type ${cat.type}">${lbl}</span>
       <button class="cat-row-del" onclick="deleteCat('${cat.id}')" ${
         cat.custom ? "" : `disabled title="${t("builtinCatTitle")}"`
       }>
@@ -1034,9 +1044,9 @@ function deleteCat(id) {
   renderCatManager();
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            CHARTS
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function getChartMeta() {
   const dark = state.theme === "dark";
   return {
@@ -1045,37 +1055,32 @@ function getChartMeta() {
     leg: dark ? "#9ba3b2" : "#6b7280",
   };
 }
-
 function renderCharts(filtered) {
   renderPieChart(filtered);
   renderLineChart(filtered);
 }
 
 function renderPieChart(filtered) {
-  const targetCur = document.getElementById("pie-currency").value;
+  const tc = document.getElementById("pie-currency").value;
   const byCategory = {};
   filtered
     .filter((tx) => tx.type === "expense")
     .forEach((tx) => {
       const amt =
-        targetCur === "original"
+        tc === "original"
           ? tx.amount
-          : convertAmount(tx.amount, tx.currency || "UAH", targetCur);
+          : convertAmount(tx.amount, tx.currency || "UAH", tc);
       byCategory[tx.categoryId] = (byCategory[tx.categoryId] || 0) + amt;
     });
-  const ids = Object.keys(byCategory);
-  const values = ids.map((id) => +byCategory[id].toFixed(2));
-  const labels = ids.map((id) => getCatById(id).name);
-  const colors = ids.map((_, i) => catColor(i));
-  const sym = targetCur === "original" ? "" : getCurrencySymbol(targetCur);
-  const pieEmpty = document.getElementById("pie-empty");
-  const canvas = document.getElementById("pie-chart");
+  const ids = Object.keys(byCategory),
+    values = ids.map((id) => +byCategory[id].toFixed(2));
+  const labels = ids.map((id) => getCatById(id).name),
+    colors = ids.map((_, i) => catColor(i));
+  const sym = tc === "original" ? "" : getCurrencySymbol(tc);
+  const pieEmpty = document.getElementById("pie-empty"),
+    canvas = document.getElementById("pie-chart");
   document.getElementById("pie-rate-note").textContent =
-    targetCur !== "original"
-      ? ratesLoaded
-        ? t("rateUpdated")
-        : t("rateApprox")
-      : "";
+    tc !== "original" ? (ratesLoaded ? t("rateUpdated") : t("rateApprox")) : "";
   pieEmpty.textContent = t("noExpenses");
   if (!ids.length) {
     canvas.style.display = "none";
@@ -1098,13 +1103,13 @@ function renderPieChart(filtered) {
           data: values,
           backgroundColor: colors,
           borderWidth: 0,
-          hoverOffset: 6,
+          hoverOffset: 7,
         },
       ],
     },
     options: {
       responsive: true,
-      cutout: "58%",
+      cutout: "60%",
       animation: { duration: 400 },
       plugins: {
         legend: {
@@ -1112,7 +1117,7 @@ function renderPieChart(filtered) {
           labels: {
             color: m.leg,
             font: { family: "DM Sans", size: 11 },
-            padding: 11,
+            padding: 12,
             boxWidth: 11,
           },
         },
@@ -1135,36 +1140,32 @@ function renderPieChart(filtered) {
 }
 
 function renderLineChart(filtered) {
-  const targetCur = document.getElementById("line-currency").value;
+  const tc = document.getElementById("line-currency").value;
   const sorted = [...filtered].sort((a, b) => a.date.localeCompare(b.date));
-  const dateMap = {};
+  const dm = {};
   sorted.forEach((tx) => {
     const amt =
-      targetCur === "original"
+      tc === "original"
         ? tx.type === "income"
           ? tx.amount
           : -tx.amount
-        : convertAmount(tx.amount, tx.currency || "UAH", targetCur) *
+        : convertAmount(tx.amount, tx.currency || "UAH", tc) *
           (tx.type === "income" ? 1 : -1);
-    dateMap[tx.date] = (dateMap[tx.date] || 0) + amt;
+    dm[tx.date] = (dm[tx.date] || 0) + amt;
   });
-  let running = 0;
+  let run = 0;
   const labels = [],
     values = [];
-  Object.entries(dateMap).forEach(([date, delta]) => {
-    running += delta;
+  Object.entries(dm).forEach(([date, delta]) => {
+    run += delta;
     labels.push(fmtDate(date));
-    values.push(+running.toFixed(2));
+    values.push(+run.toFixed(2));
   });
-  const sym = targetCur === "original" ? "₴" : getCurrencySymbol(targetCur);
-  const lineEmpty = document.getElementById("line-empty");
-  const canvas = document.getElementById("line-chart");
+  const sym = tc === "original" ? "₴" : getCurrencySymbol(tc);
+  const lineEmpty = document.getElementById("line-empty"),
+    canvas = document.getElementById("line-chart");
   document.getElementById("line-rate-note").textContent =
-    targetCur !== "original"
-      ? ratesLoaded
-        ? t("rateUpdated")
-        : t("rateApprox")
-      : "";
+    tc !== "original" ? (ratesLoaded ? t("rateUpdated") : t("rateApprox")) : "";
   lineEmpty.textContent = t("noData");
   if (!labels.length) {
     canvas.style.display = "none";
@@ -1177,10 +1178,10 @@ function renderLineChart(filtered) {
   }
   canvas.style.display = "block";
   lineEmpty.style.display = "none";
-  const ctx = canvas.getContext("2d");
-  const m = getChartMeta();
+  const ctx = canvas.getContext("2d"),
+    m = getChartMeta();
   const grad = ctx.createLinearGradient(0, 0, 0, 160);
-  grad.addColorStop(0, "rgba(91,140,255,.28)");
+  grad.addColorStop(0, "rgba(91,140,255,.3)");
   grad.addColorStop(1, "rgba(91,140,255,0)");
   const cfg = {
     type: "line",
@@ -1233,13 +1234,13 @@ function renderLineChart(filtered) {
   } else charts.line = new Chart(ctx, cfg);
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            CSV EXPORT
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function exportCSV() {
   const f = getFilteredTransactions();
   if (!f.length) {
-    alert(t("noData"));
+    alert(t("noDataAlert"));
     return;
   }
   const header = [
@@ -1272,9 +1273,9 @@ function exportCSV() {
   URL.revokeObjectURL(url);
 }
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            MODAL HELPERS
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 function overlayClick(e, id) {
   if (e.target === document.getElementById(id)) {
     if (id === "tx-modal") closeTxModal();
@@ -1288,7 +1289,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-/* ============================================================
+/* ══════════════════════════════════════════════════════════
            BOOT
-           ============================================================ */
+        ══════════════════════════════════════════════════════════ */
 init();
