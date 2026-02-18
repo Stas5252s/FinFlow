@@ -4,42 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finflow</title>
+    <title>Finflow — личный трекер финансов</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap"
         rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="./script.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 
 <body>
     <div class="app">
 
-        <!-- ===== HEADER ===== -->
+        <!-- ═══ HEADER ═══ -->
         <header>
             <div class="logo">
                 <div class="logo-dot"></div>Finflow
             </div>
             <div class="header-right">
 
-                <!-- Language switcher -->
                 <div class="lang-switcher">
-                    <button class="lang-btn" data-lang="en">
-                        <span class="lang-flag">🇬🇧</span><span class="lang-name">EN</span>
-                    </button>
-                    <button class="lang-btn" data-lang="uk">
-                        <span class="lang-flag">🇺🇦</span><span class="lang-name">UK</span>
-                    </button>
-                    <button class="lang-btn active" data-lang="ru">
-                        <span class="lang-flag">🇷🇺</span><span class="lang-name">RU</span>
-                    </button>
+                    <button class="lang-btn" data-lang="en"><span class="lang-flag">🇬🇧</span><span
+                            class="lang-name">EN</span></button>
+                    <button class="lang-btn" data-lang="uk"><span class="lang-flag">🇺🇦</span><span
+                            class="lang-name">UK</span></button>
+                    <button class="lang-btn active" data-lang="ru"><span class="lang-flag">🇷🇺</span><span
+                            class="lang-name">RU</span></button>
                 </div>
 
-                <!-- Theme toggle -->
                 <div class="theme-toggle" onclick="toggleTheme()">
-                    <svg id="theme-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    <svg id="theme-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
                         stroke-width="2" style="color:var(--text-muted)">
                         <path id="ti-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                     </svg>
@@ -48,14 +43,14 @@
                     </div>
                 </div>
 
-                <button class="btn btn-income" onclick="openTxModal('income')" id="btn-add-income">
+                <button class="btn btn-income" onclick="openTxModal('income')">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                     <span data-i18n="addIncome">Доход</span>
                 </button>
-                <button class="btn btn-expense" onclick="openTxModal('expense')" id="btn-add-expense">
+                <button class="btn btn-expense" onclick="openTxModal('expense')">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
@@ -69,7 +64,7 @@
                     </svg>
                     <span data-i18n="categories">Категории</span>
                 </button>
-                <button class="btn btn-secondary btn-sm" onclick="exportCSV()">
+                <button class="btn btn-secondary btn-sm" onclick="exportCSV()" id="btn-csv" title="">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                         <polyline points="7 10 12 15 17 10" />
@@ -80,7 +75,36 @@
             </div>
         </header>
 
-        <!-- ===== RATES TICKER ===== -->
+        <!-- ═══ HERO (first-visit only) ═══ -->
+        <div class="hero" id="hero-section">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div><span data-i18n="heroBadge">Личные финансы</span>
+            </div>
+            <h1 data-i18n-html="heroTitle">Finflow — ваш <span>трекер финансов</span></h1>
+            <p data-i18n="heroSub">Отслеживайте доходы, расходы и баланс за секунды. Никакой регистрации — всё хранится
+                в вашем браузере.</p>
+            <div class="hero-actions">
+                <button class="btn btn-income" onclick="openTxModal('income')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14"
+                        height="14">
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span data-i18n="addIncome">Добавить доход</span>
+                </button>
+                <button class="btn btn-expense" onclick="openTxModal('expense')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14"
+                        height="14">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    <span data-i18n="addExpense">Добавить расход</span>
+                </button>
+            </div>
+            <p class="hero-hint" data-i18n="heroHint">Данные сохраняются автоматически в localStorage вашего браузера
+            </p>
+        </div>
+
+        <!-- ═══ RATES BAR ═══ -->
         <div class="rates-bar" id="rates-bar">
             <div class="rates-bar-left">
                 <span class="rates-live-dot" id="rates-dot"></span>
@@ -91,8 +115,7 @@
                     <span class="rates-loading" id="rates-loading" data-i18n="ratesLoading">Загрузка курсов…</span>
                 </div>
             </div>
-            <button class="rates-refresh-btn" onclick="manualRefreshRates()" title="Обновить курсы"
-                id="rates-refresh-btn">
+            <button class="rates-refresh-btn" onclick="manualRefreshRates()" id="rates-refresh-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13">
                     <polyline points="23 4 23 10 17 10" />
                     <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
@@ -100,26 +123,46 @@
             </button>
         </div>
 
-        <!-- ===== BALANCE CARDS ===== -->
+        <!-- ═══ BALANCE CARDS ═══ -->
         <div class="balance-grid">
             <div class="card balance-main">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="color:var(--blue)">
+                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                </div>
                 <div class="card-label" data-i18n="totalBalance">Общий баланс</div>
-                <div class="card-value" id="total-balance">0</div>
+                <div class="card-value" id="total-balance">₴0</div>
                 <div class="card-sub" id="balance-sub"></div>
             </div>
-            <div class="card">
+            <div class="card income-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="color:var(--green)">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                </div>
                 <div class="card-label" data-i18n="income">Доходы</div>
-                <div class="card-value positive" id="total-income">0</div>
+                <div class="card-value positive" id="total-income">₴0</div>
                 <div class="card-sub" id="income-count"></div>
             </div>
-            <div class="card">
+            <div class="card expense-card">
+                <div class="card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="color:var(--red)">
+                        <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
+                        <polyline points="17 18 23 18 23 12" />
+                    </svg>
+                </div>
                 <div class="card-label" data-i18n="expenses">Расходы</div>
-                <div class="card-value negative" id="total-expense">0</div>
+                <div class="card-value negative" id="total-expense">₴0</div>
                 <div class="card-sub" id="expense-count"></div>
             </div>
         </div>
 
-        <!-- ===== FILTERS ===== -->
+        <!-- ═══ FILTERS ═══ -->
         <div class="filter-section">
             <div class="filter-row">
                 <span class="filter-row-label" data-i18n="period">Период</span>
@@ -144,7 +187,7 @@
             </div>
         </div>
 
-        <!-- ===== MAIN GRID ===== -->
+        <!-- ═══ MAIN GRID ═══ -->
         <div class="main-grid">
             <div>
                 <div class="section-header">
@@ -162,7 +205,7 @@
                     </div>
                     <canvas id="pie-chart"></canvas>
                     <p id="pie-empty"
-                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:18px 0"
+                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:20px 0"
                         data-i18n="noExpenses">Нет расходов</p>
                     <p class="rate-note" id="pie-rate-note"></p>
                 </div>
@@ -173,15 +216,15 @@
                     </div>
                     <canvas id="line-chart"></canvas>
                     <p id="line-empty"
-                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:18px 0"
+                        style="display:none;text-align:center;font-size:.8rem;color:var(--text-muted);padding:20px 0"
                         data-i18n="noData">Нет данных</p>
                     <p class="rate-note" id="line-rate-note"></p>
                 </div>
             </div>
         </div>
-    </div>
+    </div><!-- /app -->
 
-    <!-- ===== MODAL: ADD TRANSACTION ===== -->
+    <!-- ═══ MODAL: ADD TRANSACTION ═══ -->
     <div class="modal-overlay" id="tx-modal" onclick="overlayClick(event,'tx-modal')">
         <div class="modal">
             <div class="modal-header">
@@ -200,6 +243,14 @@
                             step="0.01" required>
                         <select id="f-currency" class="currency-picker"></select>
                     </div>
+                    <div class="form-hint">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                        </svg>
+                        <span data-i18n="amountHint">Введите положительное число, например 1500.00</span>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label" data-i18n="category">Категория</label>
@@ -209,13 +260,16 @@
                             data-i18n-placeholder="newCategoryPlaceholder" placeholder="Новая категория…"
                             maxlength="28">
                         <select id="f-new-cat-icon-pick" class="form-select"
-                            style="width:auto;padding:7px 8px;font-size:.8rem"></select>
+                            style="width:auto;padding:8px 8px;font-size:.8rem;border-radius:9px"></select>
                         <button type="button" class="btn btn-secondary btn-sm" onclick="addCatFromForm()"
-                            data-i18n="add">+ Добавить</button>
+                            data-i18n="addShort">+ Добавить</button>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="form-label" data-i18n="date">Дата</label>
+                    <label class="form-label">
+                        <span data-i18n="date">Дата</span>
+                        <span class="form-label-hint" data-i18n="dateHint">дд.мм.гггг</span>
+                    </label>
                     <input type="date" id="f-date" class="form-input" required>
                 </div>
                 <div class="form-group">
@@ -232,9 +286,9 @@
         </div>
     </div>
 
-    <!-- ===== MODAL: MANAGE CATEGORIES ===== -->
+    <!-- ═══ MODAL: MANAGE CATEGORIES ═══ -->
     <div class="modal-overlay" id="manage-cats-modal" onclick="overlayClick(event,'manage-cats-modal')">
-        <div class="modal" style="max-width:480px">
+        <div class="modal" style="max-width:490px">
             <div class="modal-header">
                 <div class="modal-title neutral" data-i18n="categoriesTitle">Категории</div>
                 <button class="modal-close" onclick="closeManageCatsModal()"><svg viewBox="0 0 24 24" fill="none"
@@ -245,15 +299,16 @@
             </div>
             <div class="cat-list" id="cat-list"></div>
             <div class="add-cat-form">
-                <div style="font-size:.69rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--text-muted)"
+                <div style="font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted)"
                     data-i18n="addCategory">Добавить категорию</div>
                 <div class="add-cat-form-row">
                     <input type="text" id="mc-name" class="form-input" data-i18n-placeholder="namePlaceholder"
                         placeholder="Название" maxlength="28" style="flex:1">
-                    <select id="mc-icon" class="form-select" style="width:auto;padding:7px 8px"></select>
-                    <select id="mc-type" class="form-select" style="width:auto" id="mc-type">
-                        <option value="income" data-i18n="income">Доход</option>
-                        <option value="expense" data-i18n="expenses">Расход</option>
+                    <select id="mc-icon" class="form-select"
+                        style="width:auto;padding:8px 8px;border-radius:9px"></select>
+                    <select id="mc-type" class="form-select" style="width:auto;border-radius:9px">
+                        <option value="income" data-i18n="incomeOpt">Доход</option>
+                        <option value="expense" data-i18n="expenseOpt">Расход</option>
                     </select>
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" onclick="addCatFromManager()"
@@ -263,7 +318,7 @@
                         <line x1="12" y1="5" x2="12" y2="19" />
                         <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
-                    <span data-i18n="add">Добавить</span>
+                    <span data-i18n="addShort">Добавить</span>
                 </button>
             </div>
             <div class="form-actions" style="margin-top:14px">
